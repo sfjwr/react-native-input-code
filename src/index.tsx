@@ -3,7 +3,8 @@ import { Text, View, TextInput, TouchableOpacity, ViewStyle, TextStyle } from 'r
 
 type Props = {
   length: number;
-  onFullFill: (code: string) => void | Promise<void>;
+  onChangeCode?: (code: string) => void | Promise<void>;
+  onFullFill?: (code: string) => void | Promise<void>;
   style?: ViewStyle;
   codeContainerStyle?: ViewStyle;
   codeContainerCaretStyle?: ViewStyle;
@@ -31,13 +32,18 @@ export default class InputCode extends Component<Props, State> {
     this.textInputCode.focus();
   };
 
-  onChangeCode = (value: string) => {
+  onChangeText = (value: string) => {
     value = value.replace(/[^0-9]/g, '');
+    const changed = value !== this.state.code;
 
     this.setState({ code: value });
 
-    if (value.length === this.props.length) {
-      this.props.onFullFill(value);
+    if (changed) {
+      this.props.onChangeCode && this.props.onChangeCode(value);
+
+      if (value.length === this.props.length) {
+        this.props.onFullFill && this.props.onFullFill(value);
+      }
     }
   };
 
@@ -99,7 +105,7 @@ export default class InputCode extends Component<Props, State> {
             autoFocus={true}
             keyboardType="number-pad"
             caretHidden={true}
-            onChangeText={this.onChangeCode}
+            onChangeText={this.onChangeText}
             maxLength={this.props.length}
             style={{ fontSize: 0, opacity: 1, height: 0, margin: 0, padding: 0 }}
             value={this.state.code}

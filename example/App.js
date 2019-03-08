@@ -13,8 +13,11 @@ import InputCode from 'react-native-input-code';
 
 type Props = {};
 export default class App extends Component<Props> {
-  onFullFill = (code: string) => {
+  onChangeCode = code => {
     console.log(code);
+  };
+
+  onFullFill = code => {
     this.inputCode.reset();
   };
 
@@ -24,6 +27,7 @@ export default class App extends Component<Props> {
         <InputCode
           ref={ref => (this.inputCode = ref)}
           length={4}
+          onChangeCode={this.onChangeCode}
           onFullFill={this.onFullFill}
           passcode
           codeContainerStyle={{
