@@ -32,6 +32,8 @@ export default class InputCode extends Component<Props, State> {
   };
 
   onChangeCode = (value: string) => {
+    value = value.replace(/[^0-9]/g, '');
+
     this.setState({ code: value });
 
     if (value.length === this.props.length) {
@@ -100,6 +102,7 @@ export default class InputCode extends Component<Props, State> {
             onChangeText={this.onChangeCode}
             maxLength={this.props.length}
             style={{ fontSize: 0, opacity: 1, height: 0, margin: 0, padding: 0 }}
+            value={this.state.code}
           />
         </View>
       </View>
