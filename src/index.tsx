@@ -10,6 +10,7 @@ type Props = {
   codeContainerCaretStyle?: ViewStyle;
   codeTextStyle?: TextStyle;
   passcode?: boolean;
+  autoFocus?: boolean;
 };
 
 type State = {
@@ -18,6 +19,10 @@ type State = {
 
 export default class InputCode extends Component<Props, State> {
   private textInputCode: TextInput | null = null;
+
+  static defaultProps = {
+    autoFocus: true,
+  };
 
   constructor(props: Props) {
     super(props);
@@ -102,7 +107,7 @@ export default class InputCode extends Component<Props, State> {
             ref={ref => {
               this.textInputCode = ref;
             }}
-            autoFocus={true}
+            autoFocus={this.props.autoFocus}
             keyboardType="number-pad"
             caretHidden={true}
             onChangeText={this.onChangeText}
