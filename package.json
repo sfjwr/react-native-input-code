@@ -1,6 +1,6 @@
 {
   "name": "react-native-input-code",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A passcode input field for React Native",
   "license": "MIT",
   "main": "lib/index.js",

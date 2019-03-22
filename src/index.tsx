@@ -112,7 +112,7 @@ export default class InputCode extends Component<Props, State> {
             caretHidden={true}
             onChangeText={this.onChangeText}
             maxLength={this.props.length}
-            style={{ fontSize: 0, opacity: 1, height: 0, margin: 0, padding: 0 }}
+            style={{ fontSize: 0, height: 1, opacity: 0, margin: 0, padding: 0 }}
             value={this.state.code}
           />
         </View>
