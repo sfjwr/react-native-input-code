@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, TouchableOpacity, ViewStyle, TextStyle } from 'react-native';
+import {
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  ViewStyle,
+  TextStyle,
+  Keyboard,
+  InteractionManager,
+} from 'react-native';
 
 type Props = {
   length: number;
@@ -47,7 +56,10 @@ export default class InputCode extends Component<Props, State> {
       this.props.onChangeCode && this.props.onChangeCode(value);
 
       if (value.length === this.props.length) {
-        this.props.onFullFill && this.props.onFullFill(value);
+        Keyboard.dismiss();
+        InteractionManager.runAfterInteractions(() => {
+          this.props.onFullFill && this.props.onFullFill(value);
+        });
       }
     }
   };
@@ -68,8 +80,9 @@ export default class InputCode extends Component<Props, State> {
 
   focus = () => {
     if (this.textInputCode === null) return;
-
-    this.textInputCode.focus();
+    InteractionManager.runAfterInteractions(() => {
+      this.textInputCode!.focus();
+    });
   };
 
   render() {
