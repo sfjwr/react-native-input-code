@@ -21,7 +21,7 @@ export default class InputCode extends Component<Props, State> {
   private textInputCode: TextInput | null = null;
 
   static defaultProps = {
-    autoFocus: true,
+    autoFocus: false,
   };
 
   constructor(props: Props) {
