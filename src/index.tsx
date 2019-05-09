@@ -106,30 +106,29 @@ export default class InputCode extends Component<Props, State> {
     );
 
     return (
-      <View style={this.props.style}>
-        <TouchableOpacity onPress={this.onPressCode} style={{ alignItems: 'stretch' }} activeOpacity={1}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-            {Array(this.props.length)
-              .fill(0)
-              .map((item, index) => renderItem(index))}
-          </View>
-        </TouchableOpacity>
-
-        <View>
-          <TextInput
-            ref={ref => {
-              this.textInputCode = ref;
-            }}
-            autoFocus={this.props.autoFocus}
-            keyboardType="number-pad"
-            caretHidden={true}
-            onChangeText={this.onChangeText}
-            maxLength={this.props.length}
-            style={{ fontSize: 0, height: 1, opacity: 0, margin: 0, padding: 0 }}
-            value={this.state.code}
-          />
+      <>
+        <View style={this.props.style}>
+          <TouchableOpacity onPress={this.onPressCode} style={{ alignItems: 'stretch' }} activeOpacity={1}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+              {Array(this.props.length)
+                .fill(0)
+                .map((item, index) => renderItem(index))}
+            </View>
+          </TouchableOpacity>
         </View>
-      </View>
+        <TextInput
+          ref={ref => {
+            this.textInputCode = ref;
+          }}
+          autoFocus={this.props.autoFocus}
+          keyboardType="number-pad"
+          caretHidden={true}
+          onChangeText={this.onChangeText}
+          maxLength={this.props.length}
+          style={{ fontSize: 0, height: 1, opacity: 0, margin: 0, padding: 0 }}
+          value={this.state.code}
+        />
+      </>
     );
   }
 }
