@@ -20,6 +20,7 @@ type Props = {
   codeTextStyle?: TextStyle;
   passcode?: boolean;
   autoFocus?: boolean;
+  oneTimeCode?: boolean;
 };
 
 type State = {
@@ -123,6 +124,7 @@ export default class InputCode extends Component<Props, State> {
           autoFocus={this.props.autoFocus}
           keyboardType="number-pad"
           caretHidden={true}
+          textContentType={this.props.oneTimeCode ? 'oneTimeCode' : undefined}
           onChangeText={this.onChangeText}
           maxLength={this.props.length}
           style={{ fontSize: 0, height: 1, opacity: 0, margin: 0, padding: 0 }}
