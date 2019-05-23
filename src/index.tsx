@@ -29,6 +29,7 @@ type State = {
 
 export default class InputCode extends Component<Props, State> {
   private textInputCode: TextInput | null = null;
+  private value: string | undefined;
 
   static defaultProps = {
     autoFocus: false,
@@ -57,11 +58,19 @@ export default class InputCode extends Component<Props, State> {
       this.props.onChangeCode && this.props.onChangeCode(value);
 
       if (value.length === this.props.length) {
+        this.value = value;
         Keyboard.dismiss();
-        InteractionManager.runAfterInteractions(() => {
-          this.props.onFullFill && this.props.onFullFill(value);
-        });
       }
+    }
+  };
+
+  onBlur = () => {
+    if (this.value) {
+      const value = this.value;
+      this.value = undefined;
+      InteractionManager.runAfterInteractions(() => {
+        this.props.onFullFill && this.props.onFullFill(value);
+      });
     }
   };
 
@@ -126,6 +135,7 @@ export default class InputCode extends Component<Props, State> {
           caretHidden={true}
           textContentType={this.props.oneTimeCode ? 'oneTimeCode' : undefined}
           onChangeText={this.onChangeText}
+          onBlur={this.onBlur}
           maxLength={this.props.length}
           style={{ fontSize: 0, height: 1, opacity: 0, margin: 0, padding: 0 }}
           value={this.state.code}
