@@ -19,6 +19,7 @@ type Props = {
   codeContainerCaretStyle?: ViewStyle;
   codeTextStyle?: TextStyle;
   passcode?: boolean;
+  passcodeChar?: string;
   autoFocus?: boolean;
   oneTimeCode?: boolean;
 };
@@ -76,7 +77,7 @@ export default class InputCode extends Component<Props, State> {
 
   extractCode(index: number) {
     if (this.props.passcode && this.state.code.length - 1 > index) {
-      return '*';
+      return this.props.passcodeChar || '*';
     }
     return this.state.code.length <= index ? '' : this.state.code.substr(index, 1);
   }

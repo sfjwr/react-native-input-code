@@ -18,7 +18,10 @@ export default class App extends Component<Props> {
   };
 
   onFullFill = code => {
-    this.inputCode.reset();
+    setTimeout(() => {
+      this.inputCode.reset();
+      this.inputCode.focus();
+    }, 100);
   };
 
   render() {
@@ -30,6 +33,7 @@ export default class App extends Component<Props> {
           onChangeCode={this.onChangeCode}
           onFullFill={this.onFullFill}
           passcode
+          passcodeChar="*"
           codeContainerStyle={{
             borderWidth: 0,
             borderBottomWidth: 2,
@@ -39,6 +43,7 @@ export default class App extends Component<Props> {
             borderBottomWidth: 2,
             borderBottomColor: 'red',
           }}
+          autoFocus
         />
       </View>
     );
