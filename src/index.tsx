@@ -90,9 +90,8 @@ export default class InputCode extends Component<Props, State> {
   };
 
   focus = () => {
-    if (this.textInputCode === null) return;
     InteractionManager.runAfterInteractions(() => {
-      this.textInputCode!.focus();
+      this.textInputCode && this.textInputCode.focus();
     });
   };
 
