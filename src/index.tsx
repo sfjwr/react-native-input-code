@@ -22,6 +22,7 @@ type Props = {
   passcodeChar?: string;
   autoFocus?: boolean;
   oneTimeCode?: boolean;
+  testID?: string;
 };
 
 type State = {
@@ -139,6 +140,7 @@ export default class InputCode extends Component<Props, State> {
           maxLength={this.props.length}
           style={{ fontSize: 0, height: 1, opacity: 0, margin: 0, padding: 0 }}
           value={this.state.code}
+          testID={this.props.testID}
         />
       </>
     );
