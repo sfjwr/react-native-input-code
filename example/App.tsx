@@ -1,20 +1,3 @@
-# react-native-input-code
-
-A code input field for React Native.
-
-![screenshot0](https://user-images.githubusercontent.com/8042009/58779993-7e6b3800-8612-11e9-99d0-6835eea178aa.png)
-
-![screenshot1](https://user-images.githubusercontent.com/8042009/58779997-81febf00-8612-11e9-956c-f6e7620d899c.png)
-
-# Installation
-
-```sh
-yarn add react-native-input-code
-```
-
-# Usage
-
-```typescript
 import React, {useCallback, useRef, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 
@@ -72,4 +55,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-```
